@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "crack-glider-304919",
+  "private_key_id": "ce7e2081cc2a992a4f8299890da2ac6d1a06af51",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCXDuSHPgagf3PP\nJIn5aJSIbWA36Kq1BsaqN815W8JbgBhVBq5Y0UzIcKzN73AVPqBTjt0Ay0ZQuclC\nIEIWXSz7Air8dDwLz5eMoZ4NHdd3+cliXGOSDfE8lsRsy1fbxAJXv0PMsRdjJsHd\n+N2eiDAgGZTNY0YERPBOFqKK7KonXHtuKoN//JOsEgN0cu678102pZNmGOk47shq\n2B8UVmXORJGfeexTZBfPBNVVEyYIFh8MjHKvgFmydALF9406XVgyUtKGwjYSc2+H\nrgK/pPM9lwB64AgAmnSsAkLTqAYM7uOFIet2yfDeYwfvMNyqWMtcq5ZlqnPJqnp4\nfprFGP7RAgMBAAECggEABRrW/L4LHcno2T94HTJcUKb3mTQW7sKxnIeBvV/tN8fi\nqp7s7en20RBDurrkfAdPhjtd+xyjfe9lXoN2EEjqT/pBByKLc++6RKGilHllcnPB\nyz3pjIJFnIFQ1odhqvbbCGmZijWS34IsC4sRPD4IeFE8/trjvxmwUEdCC3VXg7h2\nVVFS3KaLp/qaLmcPmkxfSa6slPjYcGmoQBIK1+Gix7p3RGgjhquVWcT3WymHZe1R\n0rW8iW1QkoCokxZrj6jL3z8rVESKNFu7pzFpnWUHew9v73SyJEQp3qij7Efxn7fw\nXdp45FzZfgaDO5cNva9NyJ0lNRJG4/11N98hBJeRNQKBgQDIBoYJnM5mxBPt76yH\nrPIAmUT4lYLWYusemRvLLXoWUMhU+Sycwrj3YdNEtTPvofueeW72t4aAN0XPABdA\nbvIvHJ4OZ31O9zni+4NTy7Y5vequN8Vp6ezfQI9zmCJTDc/g13kIwXa6+89AACpl\nJqf3gLKhsPY/z+uRuG6tuPqLHQKBgQDBVG/GnMTH6GVm3RXtTV5I/L4OeSbb0Jly\niqTJWURSVnl+ADZCNTI/Vang1AQFP/aGd130Rw5HqIW5DBFocKPhyl3ORbevfbas\nJAOFZGI2S5S94zU/2/tFvet5gPLa07XYBXBkY5NvzzcxinzgycLc8UcktTnT8sUn\n4aEloZ+ARQKBgAem0DvP5slhmM2STIxIHl3NfyjvNzkSQaJDAyArli8CWhd+DKnW\nfRLhiB5pvBnfnWt7g7YmYRvIgYAgpcMOO2937cfpR47cwDchne13rnnY/QA7G+8o\nRqpnotUuLan1rk0QkQ23sN4IQe5V00lZSDWck7jBtznLr1w8rOcyW0s1AoGBAJX3\n//UbqvI/7lkK63V3bMpFdNEZXfFqMX5O2mFuo7cTaY86btyRE3dZ5juHe87uvTe1\n5OYXMJaZvZG8MMzJg/ck2fumzUSOymNiVHDnW+AuZSWf2LC+3n5NQxqv0rO5Qvhd\nz7+wFrDHF1OQ0Co3mLd3Wu64vjERw6qaNj1Q0L/ZAoGBAKWT6idnUlycvBAowQOx\nKtRgpMKr7sh9Vk5ENMD2PAQlZ+08otpx80uif8QfE5jwb3m78Ut8GB3g6ORF10Lt\ne5lBiY5tp4bNZyJ3G2EVM9N6bCHCgRMosDU7KHi3YbiIeT/IitSc53QfsIVpWIYY\ntJ6RHOtUlUqoK8ZawnAsZLsy\n-----END PRIVATE KEY-----\n",
+  "client_email": "yazlabproject@crack-glider-304919.iam.gserviceaccount.com",
+  "client_id": "102571448976163589878",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/yazlabproject%40crack-glider-304919.iam.gserviceaccount.com"
+}
