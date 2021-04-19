@@ -1,20 +1,32 @@
 package com.ozgurs.yazlabii;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
+
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+    LatLng latLng_pickup;
+    LatLng latLng_drop;
     private GoogleMap mMap;
 
     @Override
@@ -38,16 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        
         mMap = googleMap;
-        mMap.addMarker(new MarkerOptions().position(new LatLng(40.68951565,-74.17678575 )).title("Marker in Sydney"));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(40.86588754,  -73.84947892)).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(40.86588754,  -73.84947892), 4));
-        Polyline polyline = mMap.addPolyline(new PolylineOptions().clickable(true)
-                .add(
-                        new LatLng(40.68951565,-74.17678575 ),
-                        new LatLng(40.86588754,  -73.84947892)
-                ));
 
     }
 }

@@ -1,5 +1,7 @@
 package com.ozgurs.yazlabii;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,7 +10,9 @@ import android.os.StrictMode;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.auth.oauth2.ServiceAccountCredentials;
 import com.google.cloud.bigquery.BigQuery;
 import com.google.cloud.bigquery.BigQueryOptions;
@@ -26,6 +30,8 @@ import java.util.UUID;
 
 public class Tip3Activity extends AppCompatActivity {
     private ArrayList<Tip3DataClass> data;
+    private Lat_Lng latLng_pickup;
+    private Lat_Lng latLng_drop;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -57,8 +63,8 @@ public class Tip3Activity extends AppCompatActivity {
             JobId jobId = JobId.of(UUID.randomUUID().toString());
 
             Job queryJob = bigquery.create(JobInfo.newBuilder(queryConfig).setJobId(jobId).build());
-
             queryJob = queryJob.waitFor();
+
             if (queryJob == null) {
                 throw new RuntimeException("Job no longer exists");
             } else if (queryJob.getStatus().getError() != null) {
@@ -78,6 +84,10 @@ public class Tip3Activity extends AppCompatActivity {
                 BigDecimal drop_location = row.get("DOLocationID").getNumericValue();
                 data.add(new Tip3DataClass(date,pickup_location.intValue(),drop_location.intValue(),trip_distance));
             }
+            if(data.get(0) != null){
+                latLng_pickup = getLatLng(data.get(0).getPickup_location(),bigquery);
+                latLng_drop = getLatLng(data.get(0).getDrop_location(),bigquery);
+            }
         }catch(Exception e){
 
         }
@@ -88,10 +98,47 @@ public class Tip3Activity extends AppCompatActivity {
 
 
     }
-    public void openOnMap(View view){
-        Intent intent = new Intent(this, MapsActivity.class );
-        startActivity(intent);
+    public Lat_Lng getLatLng (int locationID, BigQuery bigQuery) throws Exception{
+        String que = "SELECT latitude as lng, longitude as lat  FROM `crack-glider-304919.taxi_zones.zones` WHERE LocationID = "+locationID+ " LIMIT 1";
+        QueryJobConfiguration queryConfig =
+                QueryJobConfiguration.newBuilder(
+                        que)
+                        .setUseLegacySql(false)
+                        .build();
+
+        JobId jobId = JobId.of(UUID.randomUUID().toString());
+        Job queryJob = bigQuery.create(JobInfo.newBuilder(queryConfig).setJobId(jobId).build());
+        queryJob = queryJob.waitFor();
+
+        if (queryJob == null) {
+            throw new RuntimeException("Job no longer exists");
+        } else if (queryJob.getStatus().getError() != null) {
+            // You can also look at queryJob.getStatus().getExecutionErrors() for all
+            // errors, not just the latest one.
+            throw new RuntimeException(queryJob.getStatus().getError().toString());
+        }
+
+        // Get the results.
+        TableResult result = queryJob.getQueryResults();
+
+        // Print all pages of the results.
+        for (FieldValueList row : result.iterateAll()) {
+            double lng = row.get("lng").getDoubleValue();
+            double lat = row.get("lat").getDoubleValue();
+            return new Lat_Lng(lat,lng);
+        }
+        return null;
     }
+
+    public void openOnMap(View view){
+
+        Intent intent = new Intent(this, Tip4Activity.class );
+        intent.putExtra("latLng_pickup",latLng_pickup);
+        intent.putExtra("latLng_drop",latLng_drop);
+        startActivity(intent);
+
+    }
+
 
 
 }

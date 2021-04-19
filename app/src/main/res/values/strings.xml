@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">yazlabII</string>
+    <string name="APP_TOKEN">pk.eyJ1Ijoib3pndXJzIiwiYSI6ImNrbmpldjBrazAwaXcydnBtMHdqa21hM2QifQ.WUcrqTsydDQgn6e58va5Fw</string>
     <string name="title_activity_maps">Map</string>
 </resources>

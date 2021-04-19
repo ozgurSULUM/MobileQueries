@@ -46,4 +46,10 @@ dependencies {
     implementation platform('com.google.cloud:libraries-bom:19.2.1')
 
     implementation 'com.google.cloud:google-cloud-bigquery'
+
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.0.0'
+
+    implementation 'com.mapbox.mapboxsdk:mapbox-sdk-services:5.8.0'
+
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-telemetry:6.1.0'
 }
