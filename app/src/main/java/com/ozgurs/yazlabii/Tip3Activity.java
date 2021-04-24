@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -32,21 +33,30 @@ public class Tip3Activity extends AppCompatActivity {
     private ArrayList<Tip3DataClass> data;
     private Lat_Lng latLng_pickup;
     private Lat_Lng latLng_drop;
+    Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tip3);
+        button = findViewById(R.id.button3);
+        button.setVisibility(View.INVISIBLE);
     }
 
     public void tip3Query(View view){
         EditText text = findViewById(R.id.editTextTextPersonName3);
         String tarih = text.getText().toString();
+        if(tarih.matches("")){
+            Toast.makeText(this,"Lütfen tarih giriniz.",Toast.LENGTH_SHORT).show();
+            return;
+        }else{
+            button.setVisibility(View.VISIBLE);
+        }
         String que = "SELECT date(tpep_pickup_datetime) as pickup_date ,PULocationID,DOLocationID,trip_distance  " +
                 "FROM `crack-glider-304919.taxi_zones.Trips` " +
                 "WHERE date(tpep_pickup_datetime)=" + '"'+ tarih +'"' + " AND PULocationID!=DOLocationID " +
-                "ORDER BY trip_distance DESC LIMIT 5";
+                "ORDER BY trip_distance DESC LIMIT 1";
         data = new ArrayList<>();
         try{
             BigQuery bigquery = BigQueryOptions.newBuilder().setProjectId("crack-glider-304919")
@@ -85,6 +95,7 @@ public class Tip3Activity extends AppCompatActivity {
                 data.add(new Tip3DataClass(date,pickup_location.intValue(),drop_location.intValue(),trip_distance));
             }
             if(data.get(0) != null){
+
                 latLng_pickup = getLatLng(data.get(0).getPickup_location(),bigquery);
                 latLng_drop = getLatLng(data.get(0).getDrop_location(),bigquery);
             }
@@ -131,11 +142,16 @@ public class Tip3Activity extends AppCompatActivity {
     }
 
     public void openOnMap(View view){
-
-        Intent intent = new Intent(this, Tip4Activity.class );
-        intent.putExtra("latLng_pickup",latLng_pickup);
-        intent.putExtra("latLng_drop",latLng_drop);
-        startActivity(intent);
+        if(latLng_pickup != null && latLng_drop != null) {
+            Intent intent = new Intent(this, Tip4Activity.class);
+            intent.putExtra("latLng_pickup", latLng_pickup);
+            intent.putExtra("latLng_drop", latLng_drop);
+            startActivity(intent);
+        }
+        else{
+            Toast.makeText(this,"Herhangi bir sorgulama yapılmamış.",Toast.LENGTH_SHORT).show();
+            return;
+        }
 
     }
 

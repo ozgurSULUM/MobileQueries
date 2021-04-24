@@ -74,7 +74,7 @@ public class Tip4Activity extends AppCompatActivity implements OnMapReadyCallbac
                 initLayers(style);
 
                 CameraPosition position = new CameraPosition.Builder()
-                        .target(new LatLng(destination.latitude(),destination.longitude()))
+                        .target(new LatLng(origin.latitude(),origin.longitude()))
                         .zoom(10)
                         .tilt(13)
                         .build();

@@ -7,6 +7,7 @@ import android.os.StrictMode;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.auth.oauth2.ServiceAccountCredentials;
 import com.google.cloud.bigquery.BigQuery;
@@ -46,6 +47,10 @@ public class Tip2Activity extends AppCompatActivity {
         EditText txt2 = findViewById(R.id.editTextTextPersonName);
         String tarih1 = txt1.getText().toString();
         String tarih2 = txt2.getText().toString();
+        if(tarih1.matches("") || tarih2.matches("")){
+            Toast.makeText(this,"Lütfen tarihleri giriniz.",Toast.LENGTH_SHORT).show();
+            return;
+        }
         String que = "SELECT date(tpep_pickup_datetime) as pickup_date, trip_distance  " +
                 "FROM `crack-glider-304919.taxi_zones.Trips` " +
                 "WHERE trip_distance!= 0 AND date(tpep_pickup_datetime) BETWEEN " +'"'+tarih1+ '"'+ " AND " +'"'+tarih2+ '"'+
